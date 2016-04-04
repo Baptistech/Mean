@@ -21,7 +21,7 @@ function addOneSync (array) {
 Array.prototype.map = function(callback) {
     var newArray = []
     for (var i = 0; i < this.length; i++) {
-        newArray[i] = callback(this[i]).bind(this);
+        newArray[i] = callback(this[i]);
     }
     return newArray;
 }
