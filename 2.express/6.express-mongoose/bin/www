@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-NODE_PATH=$(pwd)/config:$(pwd)/app/controllers ./node_modules/.bin/forever -m 5 server.js
