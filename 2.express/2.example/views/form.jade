@@ -1,0 +1,9 @@
+html
+    head
+    body
+        ul
+            for post in posts
+                li= post
+        form(method='POST', action="/form.html")
+            input(name='post')
+            button submit

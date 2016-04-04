@@ -1,0 +1,51 @@
+db:
+    image: mongo
+    ports:
+        - "27017"
+    command: mongod
+    stdin_open: true
+    tty: true
+
+shell:
+    image: mongo
+    links:
+        - db:mongo
+    volumes:
+        - .:/app
+    working_dir: /app
+    command: bash -c 'mongo $MONGO_PORT_27017_TCP_ADDR:$MONGO_PORT_27017_TCP_PORT'
+    stdin_open: true
+    tty: true
+
+dump:
+    image: mongo
+    links:
+        - db:mongo
+    volumes:
+        - .:/app
+    working_dir: /app
+    command: bash -c 'mongodump --db local --collection startup_log -h $MONGO_PORT_27017_TCP_ADDR:$MONGO_PORT_27017_TCP_PORT --out local'
+    stdin_open: true
+    tty: true
+
+export:
+    image: mongo
+    links:
+        - db:mongo
+    volumes:
+        - .:/app
+    working_dir: /app
+    command: bash -c 'mongoexport --db local --collection startup_log -h $MONGO_PORT_27017_TCP_ADDR:$MONGO_PORT_27017_TCP_PORT --out local'
+    stdin_open: true
+    tty: true
+
+app:
+    image: node:5.4
+    ports:
+        - "80:3000"
+    links:
+        - db:mongo
+    volumes:
+        - .:/app
+    working_dir: /app
+    command: node app.js

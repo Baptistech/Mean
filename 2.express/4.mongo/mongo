@@ -1,0 +1,24 @@
+
+updating by replacement
+
+update true = upsert
+
+by modification
+
+$inc
+
+$set
+
+$unset
+
+save pour modifier et sauvegarder
+
+findAndodify
+
+$pull $push $pop
+
+===================
+
+.remove
+
+show collection
