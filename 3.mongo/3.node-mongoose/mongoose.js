@@ -5,36 +5,21 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var blogSchema = new Schema({
-  title:  String,
-  author: String,
-  body:   String,
-  comments: [{ body: String, date: Date }],
-  date: { type: Date, default: Date.now },
-  hidden: Boolean,
-  meta: {
-    votes: Number,
-    favs:  Number
-  }
-});
-
-////////////// Les methodes d'instance: ///////////////
-
 var animalSchema = new Schema({ name: String, type: String });
 
+////////////// Les methodes d'instance: ///////////////
 animalSchema.methods.findSimilarTypes = function (cb) {
   return this.model('Animal').find({ type: this.type }, cb);
 }
 
 var Animal = mongoose.model('Animal', animalSchema);
-var dog = new Animal({ type: 'dog' });
+var fido = new Animal({ name: 'fido', type: 'dog' });
 
-dog.findSimilarTypes(function (err, dogs) {
+fido.findSimilarTypes(function (err, dogs) {
   console.log(dogs);
 });
 
 //////////////// Les methodes statiques : /////////////////
-
 animalSchema.statics.findByName = function (name, cb) {
   return this.find({ name: new RegExp(name, 'i') }, cb);
 }
@@ -46,43 +31,29 @@ Animal.findByName('fido', function (err, animals) {
 });
 
 ///////////////// Propriétés virtuelles //////////////////
-
-var personSchema = new Schema({
-  name: {
-    first: String,
-    last: String
-  }
+animalSchema.virtual('nameType').get(function () {
+  return this.name + ' is a ' + this.type;
 });
 
-var Person = mongoose.model('Person', personSchema);
+console.log('%s. Don\'t you know it ?', fido.nameType);
 
-var bad = new Person({
-    name: { first: 'Walter', last: 'White' }
+animalSchema.virtual('nameType').set(function (nameType) {
+  var split = name.split(' is a ');
+  this.name = split[0];
+  this.type = split[1];
 });
 
-personSchema.virtual('name.full').get(function () {
-  return this.name.first + ' ' + this.name.last;
-});
-
-console.log('%s is insane', bad.name.full); // Walter White is insane
-
-personSchema.virtual('name.full').set(function (name) {
-  var split = name.split(' ');
-  this.name.first = split[0];
-  this.name.last = split[1];
-});
-
-mad.name.full = 'Breaking Bad';
-console.log(mad.name.first); // Breaking
-console.log(mad.name.last);  // Bad
+fido.nameType = 'fido is a rabbit';
+console.log(mad.name); // fido
+console.log(mad.type);  // rabbit
 
 /////////////////// les middlewares /////////////////////
 
-var schema = new Schema(..);
-schema.pre('save', function(next) {
-  // do stuff
-  next();
-});
+// var schema = new Schema(..);
+// schema.pre('save', function(next) {
+//   // do stuff
+//   next();
+// });
 
 
 ///////////////////////////////////////////////////////////

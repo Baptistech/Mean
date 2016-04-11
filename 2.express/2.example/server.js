@@ -59,7 +59,7 @@ app.post('/form.html', function(req, res){
 //  	.get(function(req, res){})
 //  	.post(function(req, res){});
 
-// route parameter == iprooved app.all. app.all based on rout params
+// route parameter == improoved app.all. app.all based on rout params
 app.param('name', function(req, res, next, name){
   	req.anotherName = name[0].toUpperCase() + name.substring(1);
   	next();

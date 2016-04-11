@@ -1,0 +1,15 @@
+<h2> Ajouter un contact </h2>
+
+<form name='newContact' novalidate class='form-horizontal'>
+    <form-field record='contact' field='prenom' live='false' required='true'></form-field>
+    <form-field record='contact' field='nom' live='false' required='true'></form-field>
+    <form-field ng-repeat='(k,v) in contact | keyFilter: "prenom" | keyFilter: "nom" ' record='contact' field='{{k}}'></form-field> 
+
+    <new-field record='contact' live='false'></new-field>
+
+    <div class='row form-group'>
+        <div class='col-sm-offset-2'>
+            <button class='btn btn-primary' ng-click='save()'> Ajouter </button>
+        </div>
+    </div>
+</form>

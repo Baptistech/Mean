@@ -15,7 +15,7 @@ db.open(function(err, db) {
     people.find().toArray(function (err, docs) {
       if (err) throw err;
       res.render("index.jade", { people: docs });
-    });    
+    });
   });
 
   app.post('/', function (req, res) {
