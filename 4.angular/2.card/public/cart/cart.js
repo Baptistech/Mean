@@ -11,12 +11,12 @@ angular.module('cart', ['ngRoute'])
 
 .controller('CartCtrl', ['$scope','CommonProp',function($scope,CommonProp) {
     $scope.shopData = [
-		{'item':'Disque dur','id':'HD','selected':0,'prices':[{'size':'200GB','price':'2000'},{'size':'400GB','price':'4000'}]},
-		{'item':'Processeur','id':'CPU','selected':0,'prices':[{'size':'i3','price':'20000'},{'size':'i5','price':'25000'}]},
-		{'item':'Moniteur','id':'MON','selected':0,'prices':[{'size':'16\'','price':'3000'},{'size':'19\'','price':'5000'}]},
-		{'item':'Sourie','id':'MOU','selected':0,'prices':[{'size':'USB','price':'350'},{'size':'Bluetooth','price':'550'}]},
-		{'item':'RAM','id':'RM','selected':0,'prices':[{'size':'4GB','price':'4000'},{'size':'8GB','price':'8000'}]},
-		{'item':'Clavier','id':'KEY','selected':0,'prices':[{'size':'Standard','price':'2500'},{'size':'Pro','price':'4500'}]}
+		{'item':'Disque dur','id':'HD','selected':0,'prices':[{'size':'200GB','price':'200'},{'size':'400GB','price':'40'}]},
+		{'item':'Processeur','id':'CPU','selected':0,'prices':[{'size':'i3','price':'200'},{'size':'i5','price':'250'}]},
+		{'item':'Moniteur','id':'MON','selected':0,'prices':[{'size':'16\'','price':'30'},{'size':'19\'','price':'50'}]},
+		{'item':'Sourie','id':'MOU','selected':0,'prices':[{'size':'USB','price':'3.5'},{'size':'Bluetooth','price':'5.50'}]},
+		{'item':'RAM','id':'RM','selected':0,'prices':[{'size':'4GB','price':'40'},{'size':'8GB','price':'80'}]},
+		{'item':'Clavier','id':'KEY','selected':0,'prices':[{'size':'Standard','price':'25'},{'size':'Pro','price':'45'}]}
 	];
 
 if(CommonProp.getItems()!=''){
